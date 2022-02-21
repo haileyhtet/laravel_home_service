@@ -39,6 +39,9 @@
                                     </div>
                                 </div>
                                 <div class="panel-body">
+                                    @if(Session::has('message'))
+                                    <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
+                                    @endif
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -56,7 +59,9 @@
                                                     <td><img src="{{asset('images/categories')}}/{{$scategory->image}}" width="60"></td>
                                                     <td>{{$scategory->name}}</td>
                                                     <td>{{$scategory->slug}}</td>
-                                                    <td><a href="{{route('admin.edit-service-category',['category_id'=>$scategory->id])}}"><i class="fa fa-edit fa-2x text-info"></i></a></td>
+                                                    <td>
+                                                        <a href="{{route('admin.edit-service-category',['category_id'=>$scategory->id])}}"><i class="fa fa-edit fa-2x text-info"></i></a>
+                                                    <a href="#" onclick="confirm('Are you sure, you want to delete?') || event.stopImmediatePropagation()" wire:click.prevent="deleteServiceCategory({{$scategory->id}})" style="margin-left:10px;"><i class="fa fa-times fa-2x text-danger"></i></a></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
