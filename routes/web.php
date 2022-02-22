@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\AdminServiceCategoryComponent;
 use App\Http\Livewire\Customer\CustomerDashboardComponent;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ServiceCategoriesComponent;
+use App\Http\Livewire\ServicesByCategoryComponent;
 use App\Http\Livewire\Sprovider\SproviderDashboardComponent;
 use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',HomeComponent::class)->name('home');
 Route::get('/service-categories',ServiceCategoriesComponent::class)->name('home.service-categories');
+Route::get('{category_slug}/services',ServicesByCategoryComponent::class)->name('home.services_by_category');
 //For Customer
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/customer/dashboard',CustomerDashboardComponent::class)->name('customer.dashboard');
